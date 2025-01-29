@@ -27,7 +27,7 @@
           class="mt-4 md:mt-0 px-4 py-2 text-sm font-semibold rounded-full"
           :class="isSaved ? 'bg-gray-500 cursor-not-allowed' : 'bg-yellow-500 hover:bg-yellow-600 text-black'"
         >
-          {{ isSaved ? 'Already Saved' : 'Save Location' }}
+          {{ isSaved ? 'Saved' : 'Save Location' }}
         </button>
         <span v-if="saveError" class="text-red-500 mt-2">{{ saveError }}</span>
       </div>
@@ -91,9 +91,21 @@ const saveError = ref('');
 const saveCity = async () => {
   try {
     saveError.value = ''; 
+    const isAlreadySaved = weatherStore.savedCities.some(
+      (savedCity) => savedCity.name.toLowerCase() === weatherStore.weather.name.toLowerCase()
+    );
+    if (isAlreadySaved) {
+      isSaved.value = true;
+      saveError.value = ''; 
+      return;
+    }
+
     await weatherStore.saveCity(weatherStore.weather.name);
+
+    isSaved.value = true;
+    saveError.value = '';
   } catch (err) {
-    saveError.value = err.response?.data?.message || 'An error occurred while saving the city.';
+    saveError.value = err.response?.data?.message;
   }
 };
 

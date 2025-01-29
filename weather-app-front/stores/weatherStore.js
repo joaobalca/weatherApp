@@ -27,17 +27,20 @@ export const useWeatherStore = defineStore('weatherStore', {
       if (!userId) {
         throw new Error('User ID is missing.');
       }
-
+    
       try {
         await axios.post(`${useRuntimeConfig().public.apiBase}/cities`, {
           name: city,
           userId,
         });
+    
+        // Refresh saved cities after saving
+        await this.fetchSavedCities();
       } catch (error) {
         throw error;
       }
     },
-
+    
     async fetchSavedCities() {
       const userId = localStorage.getItem('userId');
       if (!userId) {

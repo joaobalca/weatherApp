@@ -17,12 +17,10 @@ const isLoading = ref(false);
 
 const isSaved = computed(() =>
   weatherStore.savedCities.some(
-    (savedCity) =>
-      savedCity.name.toLowerCase() === weatherStore.weather?.name.toLowerCase()
+    (savedCity) => savedCity.name.toLowerCase() === weatherStore.weather?.name.toLowerCase()
   )
 );
 
-// Fetch weather data
 const fetchCityWeather = async () => {
   try {
     error.value = '';
