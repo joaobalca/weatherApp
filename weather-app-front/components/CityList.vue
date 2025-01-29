@@ -23,7 +23,7 @@
             <router-link :to="`/weather/${city.name}`" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
               View Weather
             </router-link>
-            <button @click="weatherStore.deleteCity(index)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+            <button @click="handleDelete(city.name)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
               Delete
             </button>
           </div>
@@ -40,4 +40,12 @@ import { computed } from 'vue';
 
 const weatherStore = useWeatherStore();
 const isLoading = computed(() => weatherStore.isLoading);
+
+const handleDelete = async (cityName) => {
+  try {
+    await weatherStore.deleteCity(cityName);
+  } catch (err) {
+    alert(err);
+  }
+};
 </script>

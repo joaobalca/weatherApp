@@ -59,5 +59,23 @@ export const useWeatherStore = defineStore('weatherStore', {
         this.isLoading = false;
       }
     },
+
+    async deleteCity(cityName) {
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        this.error = 'User ID is missing.';
+        return;
+      }
+
+      try {
+        await axios.delete(`${useRuntimeConfig().public.apiBase}/cities`, {
+          data: { name: cityName, userId },
+        });
+        this.savedCities = this.savedCities.filter(city => city.name.toLowerCase() !== cityName.toLowerCase());
+      } catch (error) {
+        throw error.response?.data?.message || 'Failed to delete city.';
+      }
+    }
+
   },
 });

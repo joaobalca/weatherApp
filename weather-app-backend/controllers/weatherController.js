@@ -19,8 +19,6 @@ const getWeather = async (req, res) => {
   }
 };
 
-
-
 const saveCity = async (req, res) => {
   const { name, userId } = req.body;
 
@@ -56,5 +54,23 @@ const getSavedCities = async (req, res) => {
   }
 };
 
+const deleteSavedCities = async (req, res) => {
+  const { name, userId } = req.body;
 
-module.exports = { getWeather, saveCity, getSavedCities };
+  if (!name || !userId) {
+    return res.status(400).json({ message: 'City name and User ID are required.' });
+  }
+
+  try {
+    const deletedCity = await City.findOneAndDelete({ name: name.toLowerCase(), userId });
+    if (!deletedCity) {
+      return res.status(404).json({ message: 'City not found in your saved list.' });
+    }
+    res.status(200).json({ message: 'City deleted successfully.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete city.' });
+  }
+};
+
+module.exports = { getWeather, saveCity, getSavedCities, deleteSavedCities };
+
