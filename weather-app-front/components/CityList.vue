@@ -1,21 +1,43 @@
 <template>
   <div class="mt-8">
-    <h2 class="text-lg font-bold">Saved Cities</h2>
-    <ul>
-      <li v-for="city in cities" :key="city.name" class="flex justify-between items-center mt-2">
-        <span>{{ city.name }}</span>
-        <button @click="$emit('deleteCity', city.name)" class="text-red-500">Delete</button>
-      </li>
-    </ul>
+    <div class="flex justify-center">
+      <h2 class="text-lg font-bold text-white">Saved Cities</h2>
+    </div>
+    <div v-if="isLoading">
+      <Spinner />
+    </div>
+    <div v-else>
+      <p class="text-white" v-if="weatherStore.savedCities.length === 0">
+        No cities to display
+      </p>
+      <ul v-else class="flex justify-center items-start flex-row gap-4 flex-wrap">
+        <li
+          v-for="(city, index) in weatherStore.savedCities"
+          :key="index"
+          class="relative bg-white p-4 rounded shadow-lg group w-60 h-20 flex items-center justify-center transition hover:bg-gray-100"
+        >
+          <span class="text-black font-bold group-hover:opacity-0 transition">
+            {{ city.name.toUpperCase() }}
+          </span>
+          <div class="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center gap-4 bg-black/60 opacity-0 group-hover:opacity-100 rounded transition">
+            <router-link :to="`/weather/${city.name}`" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+              View Weather
+            </router-link>
+            <button @click="weatherStore.deleteCity(index)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+              Delete
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { useWeatherStore } from '@/stores/weatherStore';
+import Spinner from '@/components/Spinner.vue';
+import { computed } from 'vue';
 
-defineProps({
-  cities: Array,
-});
-
-defineEmits(['deleteCity']);
+const weatherStore = useWeatherStore();
+const isLoading = computed(() => weatherStore.isLoading);
 </script>

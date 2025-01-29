@@ -3,8 +3,8 @@ const { getWeather, saveCity, getSavedCities } = require('../controllers/weather
 
 const router = express.Router();
 
-router.get('/weather', getWeather); // Fetch weather for a city
-router.post('/cities', saveCity); // Save a city to the database
-router.get('/cities', getSavedCities); // Retrieve saved cities
+router.get('/weather', getWeather);
+router.post('/cities', saveCity);
+router.get('/cities', getSavedCities);
 
 module.exports = router;

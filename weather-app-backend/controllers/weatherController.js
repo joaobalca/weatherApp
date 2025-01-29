@@ -11,15 +11,28 @@ const getWeather = async (req, res) => {
     );
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error.response && error.response.status === 404) {
+      res.status(404).json({ message: `City "${city}" not found. Please check the name and try again.` });
+    } else {
+      res.status(500).json({ message: error.message || 'An error occurred while fetching weather data.' });
+    }
   }
 };
 
+
+
 const saveCity = async (req, res) => {
-  const { name, country, temperature } = req.body;
+  const { name, userId } = req.body;
 
   try {
-    const city = new City({ name, country, temperature });
+    // Check if the city already exists for the user
+    const existingCity = await City.findOne({ name: name.toLowerCase(), userId });
+    if (existingCity) {
+      return res.status(400).json({ message: 'City already added!' });
+    }
+
+    // Save the new city
+    const city = new City({ name: name.toLowerCase(), userId });
     await city.save();
     res.status(201).json(city);
   } catch (error) {
@@ -27,13 +40,21 @@ const saveCity = async (req, res) => {
   }
 };
 
+
 const getSavedCities = async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required.' });
+  }
+
   try {
-    const cities = await City.find();
+    const cities = await City.find({ userId });
     res.json(cities);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Failed to fetch saved cities.' });
   }
 };
+
 
 module.exports = { getWeather, saveCity, getSavedCities };

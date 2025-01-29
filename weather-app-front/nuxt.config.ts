@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  plugins: ['~/plugins/userId.js'],
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
