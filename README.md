@@ -24,4 +24,6 @@ The "Save Location" button didn’t update its state when a city was already sav
 Saved cities were being duplicated in the list.  
 **Solution:** Added backend validation to block duplicates and provided appropriate feedback in the UI.
 
-These solutions improved the app’s user experience, responsiveness, and ensured functionality tailored to individual users.
+### 4. Duo to OpenWeather limitations
+Duo to OpenWeather limitations i couldn't show today's weather if the hour already passed.
+**Solution:** Did a condition to when i don't have any more data to show to the current day, it shows the next one

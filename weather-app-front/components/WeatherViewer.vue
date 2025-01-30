@@ -80,7 +80,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import Spinner from '@/components/Spinner.vue';
 import { useWeatherStore } from '@/stores/weatherStore';
 
@@ -105,7 +104,7 @@ const saveCity = async () => {
     isSaved.value = true;
     saveError.value = '';
   } catch (err) {
-    saveError.value = err.response?.data?.message;
+    saveError.value = err.response?._data?.message;
   }
 };
 

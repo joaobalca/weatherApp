@@ -36,8 +36,8 @@ const handleSearch = async () => {
       router.push(`/weather/${searchQuery.value}`);
     }
   } catch (err) {
-    error.value = err.response?.data?.message || 'An error occurred. Please try again.';
-  }
+      error.value = err.response?._data?.message;
+    }
 };
 
 </script>

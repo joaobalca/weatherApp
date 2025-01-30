@@ -4,6 +4,7 @@ import axios from 'axios';
 export const useWeatherStore = defineStore('weatherStore', {
   state: () => ({
     weather: null,
+    weatherDetails: null,
     savedCities: [],
     error: '',
     isLoading: false,
@@ -17,6 +18,17 @@ export const useWeatherStore = defineStore('weatherStore', {
           baseURL: useRuntimeConfig().public.apiBase,
         });
         this.weather = response;
+      } catch (error) {
+        throw error;
+      }
+    },
+    async fetchWeatherDetails(lat, lon) {
+      try {
+        this.error = '';
+        const response = await $fetch(`/weatherDetails?lat=${lat}&lon=${lon}`, {
+          baseURL: useRuntimeConfig().public.apiBase,
+        });
+        this.weatherDetails = response;
       } catch (error) {
         throw error;
       }
