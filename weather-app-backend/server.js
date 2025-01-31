@@ -6,15 +6,17 @@ const cors = require('cors');
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
 connectDB();
 
-// Routes
 app.use('/api', weatherRoutes);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'test') {
+    const PORT = process.env.PORT || 3001;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+  
+module.exports = app;
+  
