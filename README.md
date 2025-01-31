@@ -1,7 +1,7 @@
 # weatherApp
 
 ## Notes
-**Node version:** 18.20.5
+### Inside each folder there is a README.md file to help you setup both front-end and back-end apps
 
 ## About this Project
 This is an application built using **Nuxt 3**, **Express.js**, and **MongoDB**. The app allows users to:
@@ -24,6 +24,6 @@ The "Save Location" button didn’t update its state when a city was already sav
 Saved cities were being duplicated in the list.  
 **Solution:** Added backend validation to block duplicates and provided appropriate feedback in the UI.
 
-### 4. Duo to OpenWeather limitations
-Duo to OpenWeather limitations i couldn't show today's weather if the hour already passed.
-**Solution:** Did a condition to when i don't have any more data to show to the current day, it shows the next one
+### 4. Due to OpenWeather's limitations
+Due to OpenWeather's limitations, I couldn't show today's weather if the time had already passed.
+**Solution:** I put in a condition so that when there is no more data to show for the current day, it shows the next one.

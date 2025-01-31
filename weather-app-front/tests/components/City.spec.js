@@ -26,4 +26,5 @@ describe('[city].vue', () => {
 
     expect(wrapper.html()).toContain('Failed to fetch weather data');
   });
+  
 });

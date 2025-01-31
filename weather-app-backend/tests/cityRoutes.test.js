@@ -88,6 +88,6 @@ describe('City Routes', () => {
         const response = await request(app).post('/api/cities').send(mockCity);
 
         expect(response.status).toBe(500);
-        expect(response.body.message).toBe('Failed to fetch data');
+        expect(response.body.message).toBe('Failed to save the city');
     });
 });

@@ -1,7 +1,5 @@
 # Nuxt Minimal Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
 ### Recommended Node version: 18.20.5
 
 ## Setup
@@ -37,3 +35,22 @@ npm run build
 # npm
 npm run test
 ```
+## Dependencies
+
+- **@pinia/nuxt**: Integration of Pinia (state management library) with Nuxt 3.
+- **@tailwindcss/vite**: Vite plugin for integrating Tailwind CSS into your Nuxt 3 application.
+- **autoprefixer**: Adds vendor prefixes to CSS automatically for better browser compatibility.
+- **axios**: HTTP client for making API requests from your Nuxt 3 application.
+- **nuxt**: The core framework for building your application, providing server-side rendering and other features.
+- **tailwindcss**: Utility-first CSS framework for styling the application.
+- **uuid**: Generates unique IDs.
+- **vue**: The Vue.js framework used as the foundation of the Nuxt 3 application.
+- **vue-router**: Router library for handling client-side routing within the application.
+
+## DevDependencies
+
+- **@pinia/testing**: Utilities for testing Pinia stores in your frontend.
+- **@vitejs/plugin-vue**: Vite plugin for handling Vue 3 files during development and builds.
+- **@vue/test-utils**: Utility library for testing Vue components.
+- **jsdom**: Simulates a browser environment for testing in Node.js.
+- **vitest**: Testing framework for running unit and integration tests in the frontend.
