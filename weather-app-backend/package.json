@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "vercel-build": "node server.js"
+    "vercel-build": "echo hello vercel"
   },
   "keywords": [],
   "author": "",

@@ -9,7 +9,7 @@ npm install
 ## Development Server
 ```bash
 # run backend
-node server.js
+npm run start
 ```
 ## Testing
 ```bash
