@@ -13,10 +13,9 @@ connectDB();
 
 app.use('/api', weatherRoutes);
 
-if (process.env.NODE_ENV !== 'test') {
-    const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Uncomment the code below to run the server locally
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   
 module.exports = app;
   
