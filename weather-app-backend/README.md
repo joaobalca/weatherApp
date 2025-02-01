@@ -16,6 +16,19 @@ npm run start
 # npm
 npm test
 ```
+## Note:
+
+To provide a personalized experience, a plugin was implemented to generate a unique ID for each user. This ensures that saved cities are tied to individual users, allowing each person to see only their saved cities.
+
+## Challenges Faced and Solutions
+
+### 1. Duplicate City Prevention
+Saved cities were being duplicated in the list.  
+**Solution:** Added backend validation to block duplicates and provided appropriate feedback in the UI.
+
+### 2. Error Handling
+Errors, such as searching for a non-existent city, were not displayed.  
+**Solution:** Implemented proper error propagation from the backend and displayed error messages conditionally in the UI.
 
 ## Dependencies
 

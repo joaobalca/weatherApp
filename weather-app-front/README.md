@@ -1,3 +1,21 @@
+# weatherApp
+
+## About this Project
+This is an application built using **Nuxt 3**, **Express.js**, and **MongoDB**. The app allows users to:
+
+- Search for a city to view its weather information.
+- Save or remove cities from their saved list.
+
+## Challenges Faced and Solutions
+
+### 1. City Save State
+The "Save Location" button didn’t update its state when a city was already saved.  
+**Solution:** Added a computed property to check if the city exists in the saved cities list, ensuring the button state updated reactively.
+
+### 2. Due to OpenWeather's limitations
+Due to OpenWeather's limitations, I couldn't show today's weather if the time had already passed.
+**Solution:** I put in a condition so that when there is no more data to show for the current day, it shows the next one.
+
 # Nuxt Minimal Starter
 
 ### Recommended Node version: 18.20.5
