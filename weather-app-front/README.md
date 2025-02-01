@@ -2,6 +2,7 @@
 
 ### Recommended Node version: 18.20.5
 
+## If you find any problem with any package when you stop and start again locally, try to remove node modules and package-lock.json (rm -rf node_modules package-lock.json) and run npm install after.
 ## Setup
 
 Make sure to install dependencies:

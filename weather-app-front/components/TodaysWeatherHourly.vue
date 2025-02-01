@@ -26,8 +26,8 @@
         </p>
       </div>
     </div>
-    <div v-else-if="!isLoadingWeatherDetails && error" class="text-white text-center">
-      <p>{{error}}</p>
+    <div v-else-if="!isLoadingWeatherDetails && error" class="text-center">
+      <p class="text-white">{{error}}</p>
     </div>
   </div>
   </template>

@@ -104,7 +104,7 @@ const saveCity = async () => {
     isSaved.value = true;
     saveError.value = '';
   } catch (err) {
-    saveError.value = err.response?._data?.message;
+    saveError.value = err.response?.data?.message;
   }
 };
 

@@ -1,8 +1,8 @@
 <template>
     <div class="p-10">
-        <WeatherViewer :weather="weatherStore.weather" :error="weatherStore.error" :isLoading="isLoading" :isSaved="isSaved"/>
-        <TodaysWeatherHourly :weatherDetails="weatherStore.weatherDetails" :error="weatherStore.error" :isLoadingWeatherDetails="isLoadingWeatherDetails"/>
-        <NextThreeDays :weatherDetails="weatherStore.weatherDetails" :error="weatherStore.error" :isLoadingWeatherDetails="isLoadingWeatherDetails"/>
+        <WeatherViewer :weather="weatherStore.weather" :error="error" :isLoading="isLoading" :isSaved="isSaved"/>
+        <TodaysWeatherHourly :weatherDetails="weatherStore.weatherDetails" :error="error" :isLoadingWeatherDetails="isLoadingWeatherDetails"/>
+        <NextThreeDays :weatherDetails="weatherStore.weatherDetails" :error="error" :isLoadingWeatherDetails="isLoadingWeatherDetails"/>
     </div>
 </template>
   
@@ -15,6 +15,7 @@ const weatherStore = useWeatherStore();
 const route = useRoute();
 
 const error = ref('');
+
 const isLoading = ref(false);
 const isLoadingWeatherDetails = ref(false);
 
@@ -32,6 +33,7 @@ const fetchCityWeather = async () => {
         // Fetch weather details only after weather data is loaded
         await fetchCityWeatherDetails();
     } catch (err) {
+      console.log(err.response, "aqui")
         error.value = err.response?._data?.message || 'Failed to fetch weather data.';
     } finally {
         isLoading.value = false;
@@ -44,6 +46,7 @@ const fetchCityWeatherDetails = async () => {
     isLoadingWeatherDetails.value = true;
     await weatherStore.fetchWeatherDetails(weatherStore.weather.coord.lat, weatherStore.weather.coord.lon);
   } catch (err) {
+    console.log(err.response._data.message, "aqui")
     error.value = err.response?._data?.message || 'Failed to fetch weather details data.';
   } finally {
     isLoadingWeatherDetails.value = false;
